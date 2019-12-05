@@ -8,13 +8,13 @@ export SYN_DIR = $(shell pwd)
 SRC_DIR = $(SYN_DIR)/../src
 
 # source files for synthesis
-# add the path to source files ex:MCE.sv 
-# separated with spaces	
-SOURCE_FILES =  xxxx.sv
+# add the path to source files ex:MCE.sv
+# separated with spaces
+SOURCE_FILES =  MCE.sv
 
 # Top module for synthesis
 # add the top modle for synthesis ex:MCE
-export TOP_MODULE  = xxxx
+export TOP_MODULE  = MCE
 
 export FILES = $(patsubst %,$(SRC_DIR)/%,$(SOURCE_FILES))
 
@@ -24,7 +24,7 @@ export FILES = $(patsubst %,$(SRC_DIR)/%,$(SOURCE_FILES))
 all:
 ifeq ($(TOP_MODULE),xxxx)
 	@echo "You have to define the TOP MODULE !!!"
-else 
+else
 ifeq ($(SOURCE_FILES),xxxx.sv)
 	@echo "You have to define the SOURCE FILES !!!"
 else
