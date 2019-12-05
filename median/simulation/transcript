@@ -12,4 +12,11 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# Break key hit
+# vsim MCE_tb 
+# Start time: 15:31:41 on Dec 05,2019
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading sv_std.std
+# Loading work.MCE_tb(fast)
+# Loading work.MCE(fast)
+# End time: 15:32:32 on Dec 05,2019, Elapsed time: 0:00:51
+# Errors: 0, Warnings: 0
