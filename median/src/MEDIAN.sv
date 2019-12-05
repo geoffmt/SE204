@@ -16,94 +16,95 @@ module MEDIAN #(parameter width = 8)
   enum logic [2:0] {S0, S1, S2, S3, S4} state;
 
 
-  always @(posedge CLK or negedge nRST)
-  if (!nRST) begin
-    state <= S0;
-    cpt <= 0;
-    BYP <= 0;
-    DSO <= 0;
-  end
-  else begin
-    case (state)
-      S0: begin
-        if (cpt<8) begin
-          BYP <= 0;
-          cpt <= cpt+1;
-        end
-        if (cpt==8) begin
-          BYP <=1 ;
-          cpt <= 0;
-          state <= S1;
-        end
-      end
-      S1: begin
-        if (cpt <7)begin
-          BYP <=0;
-          cpt <= cpt+1;
-        end
-        else begin
+  always @(posedge CLK or negedge nRST)begin
+    if (!nRST) begin
+      state <= S0;
+      cpt <= 0;
+      BYP <= 0;
+      DSO <= 0;
+    end
+    else begin
+      case (state)
+        S0: begin
           if (cpt<8) begin
-            BYP <= 1;
-            cpt <= cpt + 1;
+            BYP <= 0;
+            cpt <= cpt+1;
+          end
+          if (cpt==8) begin
+            BYP <=1 ;
+            cpt <= 0;
+            state <= S1;
+          end
+        end
+        S1: begin
+          if (cpt <7)begin
+            BYP <=0;
+            cpt <= cpt+1;
           end
           else begin
-            BYP <= 1;
-            cpt <= 0;
-            state <= S2;
+            if (cpt<8) begin
+              BYP <= 1;
+              cpt <= cpt + 1;
+            end
+            else begin
+              BYP <= 1;
+              cpt <= 0;
+              state <= S2;
+            end
           end
         end
-      end
-      S2: begin
-        if (cpt <6)begin
-          BYP <=0;
-          cpt <= cpt+1;
-        end
-        else begin
-          if (cpt<8) begin
-            BYP <= 1;
-            cpt <= cpt + 1;
-          end
-          else begin
-            BYP <= 1;
-            cpt <= 0;
-            state <= S3;
-          end
-        end
-      end
-      S3: begin
-        if (cpt <5)begin
-          BYP <=0;
-          cpt <= cpt+1;
-        end
-        else begin
-          if (cpt<8) begin
-            BYP <= 1;
-            cpt <= cpt + 1;
+        S2: begin
+          if (cpt <6)begin
+            BYP <=0;
+            cpt <= cpt+1;
           end
           else begin
-            BYP <= 1;
-            cpt <= 0;
-            state <= S4;
+            if (cpt<8) begin
+              BYP <= 1;
+              cpt <= cpt + 1;
+            end
+            else begin
+              BYP <= 1;
+              cpt <= 0;
+              state <= S3;
+            end
           end
         end
-      end
-      S4: begin
-        if (cpt <5)begin
-          BYP <=0;
-          cpt <= cpt+1;
-        end
-        else begin
-          if (cpt<8) begin
-            BYP <= 1;
-            cpt <= cpt + 1;
+        S3: begin
+          if (cpt <5)begin
+            BYP <=0;
+            cpt <= cpt+1;
           end
           else begin
-            BYP <= 1;
-            cpt <= 0;
-            DSO <=1;
+            if (cpt<8) begin
+              BYP <= 1;
+              cpt <= cpt + 1;
+            end
+            else begin
+              BYP <= 1;
+              cpt <= 0;
+              state <= S4;
+            end
           end
         end
-      end           
-    endcase
+        S4: begin
+          if (cpt <5)begin
+            BYP <=0;
+            cpt <= cpt+1;
+          end
+          else begin
+            if (cpt<8) begin
+              BYP <= 1;
+              cpt <= cpt + 1;
+            end
+            else begin
+              BYP <= 1;
+              cpt <= 0;
+              DSO <=1;
+            end
+          end
+        end           
+      endcase
+    end
   end
 endmodule
