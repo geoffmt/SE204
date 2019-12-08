@@ -12,11 +12,20 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# vsim MCE_tb 
-# Start time: 15:31:41 on Dec 05,2019
-# ** Note: (vsim-8009) Loading existing optimized design _opt
+# vsim MEDIAN_tb -L cycloneii_ver 
+# Start time: 23:52:40 on Dec 08,2019
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: ../src/MEDIAN.sv(15): (vopt-2685) [TFMPC] - Too few port connections for 'med0'.  Expected 5, found 4.
+# ** Warning: ../src/MEDIAN.sv(15): (vopt-2718) [TFMPC] - Missing connection for port 'BYP'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "MEDIAN(fast)".
 # Loading sv_std.std
-# Loading work.MCE_tb(fast)
+# Loading work.MEDIAN_tb(fast)
+# Loading work.MEDIAN(fast)
+# Loading work.MED(fast)
 # Loading work.MCE(fast)
-# End time: 15:32:32 on Dec 05,2019, Elapsed time: 0:00:51
-# Errors: 0, Warnings: 0
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'MAX'. The port definition is at: ../src/MCE.sv(4).
+#    Time: 0 ps  Iteration: 0  Instance: /MEDIAN_tb/I_MEDIAN/med0/mce0 File: ../src/MED.sv Line: 14
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'MIN'. The port definition is at: ../src/MCE.sv(5).
+#    Time: 0 ps  Iteration: 0  Instance: /MEDIAN_tb/I_MEDIAN/med0/mce0 File: ../src/MED.sv Line: 14
+# End time: 23:53:09 on Dec 08,2019, Elapsed time: 0:00:29
+# Errors: 0, Warnings: 4
