@@ -5,7 +5,7 @@ module MEDIAN #(parameter width = 8)
   input logic DSI,
   input logic nRST,
   input logic CLK,
-  output logic [width-1:0] DO,
+  output wire [width-1:0] DO,
   output logic DSO);
 
   logic BYP;

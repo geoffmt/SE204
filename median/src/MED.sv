@@ -5,7 +5,7 @@ module MED #(parameter width = 8, parameter number = 9)
   input logic DSI,
   input logic BYP,
   input logic CLK,
-  output logic [width-1:0] DO);
+  output wire [width-1:0] DO);
 
 
   logic [width-1:0] R [number-1:0];
