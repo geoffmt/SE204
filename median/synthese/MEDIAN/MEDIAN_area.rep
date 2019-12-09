@@ -6,9 +6,9 @@
 //            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
 //          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
 //  
-//  Running on Linux gmateu@tp-3a101-02 #1 SMP Debian 4.19.67-2+deb10u2 (2019-11-11) 4.19.0-6-amd64 x86_64
+//  Running on Linux gmateu@tp-1a207-05 #1 SMP Debian 4.19.67-2+deb10u2 (2019-11-11) 4.19.0-6-amd64 x86_64
 //  
-//  Start time Sun Dec  8 23:13:40 2019
+//  Start time Mon Dec  9 12:22:43 2019
 
 ***************************************************************
 Device Utilization for EP2C35F672C
@@ -16,9 +16,9 @@ Device Utilization for EP2C35F672C
 Resource                          Used    Avail   Utilization
 ---------------------------------------------------------------
 IOs                               20      -            -
-LUTs                              12      33216     0.04%
-Registers                         10      33216     0.03%
-Memory Bits                       0       483840    0.00%
+LUTs                              50      33216     0.15%
+Registers                         29      33216     0.09%
+Memory Bits                       64      483840    0.01%
 DSP block 9-bit elems             0       70        0.00%
 ---------------------------------------------------------------
 
@@ -28,22 +28,23 @@ Library: work    Cell: MEDIAN    View: INTERFACE
 
 ************************************************
 
-  Cell                   Library  References     Total Area
+  Cell                      Library  References     Total Area
 
- GND                     cycloneii     1 x
- NOT                     cycloneii     2 x
- TRI                     cycloneii     8 x      1      8 TRIs
- cycloneii_lcell_comb    cycloneii    12 x      1     12 LUTs
- cycloneii_lcell_ff      cycloneii    10 x      1     10 Registers
+ GND                        cycloneii     1 x
+ NOT                        cycloneii     3 x
+ VCC                        cycloneii     1 x
+ altshift_taps_8_8_1_5_0    OPERATORS     1 x     64     64 Memory Bits
+ cycloneii_lcell_comb       cycloneii    50 x      1     50 LUTs
+ cycloneii_lcell_ff         cycloneii    29 x      1     29 Registers
 
  Number of ports :                           20
- Number of nets :                            35
- Number of instances :                       33
+ Number of nets :                           106
+ Number of instances :                       85
  Number of references to this view :          0
 
 Total accumulated area : 
  Number of LCs :                              0
- Number of LUTs :                            12
- Number of Registers :                       10
- Number of TRIs :                             8
- Number of accumulated instances :           33
+ Number of LUTs :                            50
+ Number of Memory Bits :                     64
+ Number of Registers :                       29
+ Number of accumulated instances :           85

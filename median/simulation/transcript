@@ -13,25 +13,17 @@
 # //  18 U.S.C. Section 1905.
 # //
 # vsim MEDIAN_IMAGE_tb 
-# Start time: 00:01:15 on Dec 09,2019
-# ** Note: (vsim-3812) Design is being optimized...
-# ** Warning: ../src/MEDIAN.sv(15): (vopt-2685) [TFMPC] - Too few port connections for 'med0'.  Expected 5, found 4.
-# ** Warning: ../src/MEDIAN.sv(15): (vopt-2718) [TFMPC] - Missing connection for port 'BYP'.
+# Start time: 12:31:00 on Dec 09,2019
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # ** Note: (vopt-143) Recognized 1 FSM in module "MEDIAN(fast)".
 # Loading sv_std.std
 # Loading work.MEDIAN_IMAGE_tb(fast)
 # Loading work.MEDIAN(fast)
 # Loading work.MED(fast)
 # Loading work.MCE(fast)
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'MAX'. The port definition is at: ../src/MCE.sv(4).
-#    Time: 0 ps  Iteration: 0  Instance: /MEDIAN_IMAGE_tb/I_MEDIAN/med0/mce0 File: ../src/MED.sv Line: 14
-# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'MIN'. The port definition is at: ../src/MCE.sv(5).
-#    Time: 0 ps  Iteration: 0  Instance: /MEDIAN_IMAGE_tb/I_MEDIAN/med0/mce0 File: ../src/MED.sv Line: 14
 run -all
-# Erreur : DO =   z au lieu de         155
-# ** Note: $stop    : ../src/median-image-tb.sv(62)
-#    Time: 930 ns  Iteration: 1  Instance: /MEDIAN_IMAGE_tb
-# Break in NamedBeginStat ENTREES at ../src/median-image-tb.sv line 62
-# Break key hit
-# End time: 00:02:50 on Dec 09,2019, Elapsed time: 0:01:35
-# Errors: 2, Warnings: 4
+# Fin de simulation sans aucune erreur
+# ** Note: $finish    : ../src/median-image-tb.sv(68)
+#    Time: 66846750 ns  Iteration: 1  Instance: /MEDIAN_IMAGE_tb
+# End time: 12:31:09 on Dec 09,2019, Elapsed time: 0:00:09
+# Errors: 0, Warnings: 0

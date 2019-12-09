@@ -6,6 +6,10 @@
 #################
 # Attributes
 #################
+set_attribute -name tap_distance -value "8" -instance -type integer ix60131z49990 -design gatelevel 
+set_attribute -name number_of_taps -value "1" -instance -type integer ix60131z49990 -design gatelevel 
+set_attribute -name width -value "8" -instance -type integer ix60131z49990 -design gatelevel 
+
 
 ##################
 # Clocks

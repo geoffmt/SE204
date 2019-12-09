@@ -1,27 +1,28 @@
-`include "MED.sv"
 
 module MEDIAN #(parameter width = 8)
   (input logic [width-1:0] DI,
   input logic DSI,
   input logic nRST,
   input logic CLK,
-  output wire [width-1:0] DO,
+  output [width-1:0] DO,
   output logic DSO);
 
   logic BYP;
   logic DSI_S;
   logic [width-1:0] DI_S;
-  logic [4:0] cpt;
 
 
-  MED #(.width(width))med0(.DI(DI_S),.DSI(DSI_S),.CLK(CLK),.DO(DO));
+
+  MED #(.width(width))med0(.DI(DI_S),.DSI(DSI_S),.CLK(CLK),.BYP(BYP),.DO(DO));
   enum logic [3:0] {ATTENTE, CHARGEMENT, S1, S2, S3, S4, S5} state;
-
+  logic [4:0] cpt;
 
   always @(posedge CLK or negedge nRST)begin
     if (!nRST) begin
       state <= ATTENTE;
       cpt <= 0;
+      DSI_S<=0;
+      DI_S<=0;
     end
     else begin
       DI_S<=DI;

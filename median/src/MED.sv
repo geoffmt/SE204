@@ -1,16 +1,18 @@
 
 
 module MED #(parameter width = 8, parameter number = 9)
-  (input logic [width-1:0] DI,
-  input logic DSI,
-  input logic BYP,
-  input logic CLK,
-  output wire [width-1:0] DO);
+  (input [width-1:0] DI,
+  input DSI,
+  input BYP,
+  input CLK,
+  output [width-1:0] DO);
 
 
   logic [width-1:0] R [number-1:0];
   logic [width-1:0] MAX;
   logic [width-1:0] MIN;
+
+  assign DO = R[number-1];
   MCE #(.width(width))mce0(.A(R[number-2]),.B(R[number-1]),.MAX(MAX),.MIN(MIN));
 
 

@@ -14,7 +14,7 @@ module MEDIAN_tb;
   wire  DSO;
 
   MEDIAN I_MEDIAN(  .DI(DI),.DO(DO),
-                    .CLK(CLK), .DSI(DSI), 
+                    .CLK(CLK), .DSI(DSI),
                     .nRST(nRST), .DSO(DSO)
                  );
 
