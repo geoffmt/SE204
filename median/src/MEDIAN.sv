@@ -20,7 +20,7 @@ module MEDIAN #(parameter width = 8)
 
   always @(posedge CLK or negedge nRST)begin
     if (!nRST) begin
-      state <= attente;
+      state <= ATTENTE;
       cpt <= 0;
     end
     else begin
@@ -78,7 +78,7 @@ module MEDIAN #(parameter width = 8)
         end
 
         S5: begin
-          if (C == 4)begin
+          if (cpt == 4)begin
             state <= ATTENTE;
           end
           else begin
@@ -89,6 +89,30 @@ module MEDIAN #(parameter width = 8)
     end
   end
 
+  always_comb begin
+		DSO = 0 ;
+		BYP = 0 ;
+		case (state)
+			CHARGEMENT :
+				BYP = 1 ;
+			S1 :
+				if (cpt == 8)
+					BYP = 1 ;
+			S2 :
+				if (cpt >= 7 )
+					BYP = 1 ;
+			S3 :
+				if (cpt >= 6)
+					BYP = 1 ;
+			S4 :
+				if (cpt >= 5)
+					BYP = 1 ;
+			S5 :
+				if (cpt == 4)
+					DSO = 1 ;
+
+		endcase
+	end
 
 
 
