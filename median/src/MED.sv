@@ -1,4 +1,4 @@
-`include "MCE.sv"
+
 
 module MED #(parameter width = 8, parameter number = 9)
   (input logic [width-1:0] DI,
@@ -16,7 +16,7 @@ module MED #(parameter width = 8, parameter number = 9)
 
   always @(posedge CLK)
     begin
-      R[0] <= DSI? MIN:DI;
+      R[0] <= DSI? DI:MIN;
       for(int i=number-3;i>=0;i--)
         begin
           R[i+1] <= R[i];
