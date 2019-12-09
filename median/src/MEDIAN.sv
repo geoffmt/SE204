@@ -9,21 +9,23 @@ module MEDIAN #(parameter width = 8)
   output logic DSO);
 
   logic BYP;
-  logic [3:0] cpt;
+  logic DSI_S;
+  logic [width-1:0] DI_S;
+  logic [4:0] cpt;
 
 
-  MED #(.width(width))med0(.DI(DI),.DSI(DSI),.CLK(CLK),.DO(DO));
-  enum logic [2:0] {S0, S1, S2, S3, S4} state;
+  MED #(.width(width))med0(.DI(DI_S),.DSI(DSI_S),.CLK(CLK),.DO(DO));
+  enum logic [3:0] {attente, chargement, S1, S2, S3, S4, S5} state;
 
 
   always @(posedge CLK or negedge nRST)begin
     if (!nRST) begin
-      state <= S0;
+      state <= attente;
       cpt <= 0;
-      BYP <= 0;
-      DSO <= 0;
     end
     else begin
+      DI_S<=DI;
+      DSI_S<=DSI;
       case (state)
         S0: begin
           if (cpt<8) begin
@@ -103,7 +105,7 @@ module MEDIAN #(parameter width = 8)
               DSO <=1;
             end
           end
-        end           
+        end
       endcase
     end
   end

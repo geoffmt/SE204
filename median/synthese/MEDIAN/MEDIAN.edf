@@ -1,0 +1,336 @@
+(edif MEDIAN 
+ (edifVersion 2 0 0)
+ (edifLevel 0)
+ (keywordMap (keywordLevel 0))
+ (status 
+  (written 
+   (timestamp 2019 12 08 22 15 37)
+   (program "Precision RTL Synthesis" (version "64-bit 2017.1.0.15"))
+   (author "Mentor Graphics Corporation")))
+ (external cycloneii 
+  (edifLevel 0)
+  (technology (numberDefinition ))
+  (cell NOT (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port IN1 (direction INPUT))
+     (port Y (direction OUTPUT)))))
+  (cell GND (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port Y (direction OUTPUT)))))
+  (cell TRI (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port IN (direction INPUT))
+     (port OE (direction INPUT))
+     (port OUT (direction OUTPUT)))))
+  (cell cycloneii_lcell_ff (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port datain (direction INPUT))
+     (port sdata (direction INPUT))
+     (port clk (direction INPUT))
+     (port ena (direction INPUT))
+     (port aclr (direction INPUT))
+     (port sclr (direction INPUT))
+     (port sload (direction INPUT))
+     (port devclrn (direction INPUT))
+     (port devpor (direction INPUT))
+     (port regout (direction OUTPUT)))))
+  (cell cycloneii_lcell_comb (cellType GENERIC)
+   (view NETLIST  (viewType NETLIST)
+    (interface 
+     (port dataa (direction INPUT))
+     (port datab (direction INPUT))
+     (port datac (direction INPUT))
+     (port datad (direction INPUT))
+     (port cin (direction INPUT))
+     (port combout (direction OUTPUT))
+     (port cout (direction OUTPUT))))))
+ (library work 
+  (edifLevel 0)
+  (technology (numberDefinition ))
+  (cell MEDIAN (cellType GENERIC)
+   (view INTERFACE  (viewType NETLIST)
+    (interface 
+     (port (array (rename DI "DI(7:0)") 8 )(direction INPUT))
+     (port DSI (direction INPUT))
+     (port nRST (direction INPUT))
+     (port CLK (direction INPUT))
+     (port (array (rename DO "DO(7:0)") 8 )(direction OUTPUT))
+     (port DSO (direction OUTPUT)))
+    (property DESIGN_IS_RTL (string "NO"))
+    (contents 
+     (instance ix49729z1317 (viewRef NETLIST  (cellRef NOT (libraryRef cycloneii )))
+      (property area_report (string "0")))
+     (instance GND (viewRef NETLIST  (cellRef GND (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_0_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_1_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_2_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_3_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_4_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_5_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_6_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance med0_DO_triBus1_7_ (viewRef NETLIST  (cellRef TRI (libraryRef cycloneii ))))
+     (instance ix22430z1315 (viewRef NETLIST  (cellRef NOT (libraryRef cycloneii ))))
+     (instance reg_state_0_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance reg_DSO (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance modgen_counter_cpt_reg_q_3_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance modgen_counter_cpt_reg_q_2_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance modgen_counter_cpt_reg_q_1_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance modgen_counter_cpt_reg_q_0_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_4_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_3_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_2_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_1_ (viewRef NETLIST  (cellRef cycloneii_lcell_ff (libraryRef cycloneii ))))
+     (instance ix52720z52924 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "6aaa")))
+     (instance ix51723z52924 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "6a6a")))
+     (instance ix50726z52924 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "6666")))
+     (instance ix52720z52923 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "5700")))
+     (instance ix51723z52923 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "5700")))
+     (instance ix50726z52923 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "5700")))
+     (instance ix49729z52923 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "1113")))
+     (instance ix29521z52923 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "f2f0")))
+     (instance ix33079z52923 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "eaea")))
+     (instance ix22430z52924 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "2220")))
+     (instance ix49729z52924 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "fdfd")))
+     (instance ix22430z52925 (viewRef NETLIST  (cellRef cycloneii_lcell_comb (libraryRef cycloneii )))
+      (property operation_mode (string "normal"))
+      (property lut_mask (string "0002")))
+     (net nRST 
+      (joined 
+       (portRef nRST )
+       (portRef IN1 (instanceRef ix49729z1317 ))))
+     (net CLK 
+      (joined 
+       (portRef CLK )
+       (portRef clk (instanceRef reg_state_0_ ))
+       (portRef clk (instanceRef reg_DSO ))
+       (portRef clk (instanceRef modgen_counter_cpt_reg_q_3_ ))
+       (portRef clk (instanceRef modgen_counter_cpt_reg_q_2_ ))
+       (portRef clk (instanceRef modgen_counter_cpt_reg_q_1_ ))
+       (portRef clk (instanceRef modgen_counter_cpt_reg_q_0_ ))
+       (portRef clk (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_4_ ))
+       (portRef clk (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_3_ ))
+       (portRef clk (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_2_ ))
+       (portRef clk (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_1_ ))))
+     (net DSO 
+      (joined 
+       (portRef DSO )
+       (portRef regout (instanceRef reg_DSO ))
+       (portRef dataa (instanceRef ix33079z52923 ))))
+     (net DO_7_ 
+      (joined 
+       (portRef (member DO 0))
+       (portRef OUT (instanceRef med0_DO_triBus1_7_ ))))
+     (net DO_6_ 
+      (joined 
+       (portRef (member DO 1))
+       (portRef OUT (instanceRef med0_DO_triBus1_6_ ))))
+     (net DO_5_ 
+      (joined 
+       (portRef (member DO 2))
+       (portRef OUT (instanceRef med0_DO_triBus1_5_ ))))
+     (net DO_4_ 
+      (joined 
+       (portRef (member DO 3))
+       (portRef OUT (instanceRef med0_DO_triBus1_4_ ))))
+     (net DO_3_ 
+      (joined 
+       (portRef (member DO 4))
+       (portRef OUT (instanceRef med0_DO_triBus1_3_ ))))
+     (net DO_2_ 
+      (joined 
+       (portRef (member DO 5))
+       (portRef OUT (instanceRef med0_DO_triBus1_2_ ))))
+     (net DO_1_ 
+      (joined 
+       (portRef (member DO 6))
+       (portRef OUT (instanceRef med0_DO_triBus1_1_ ))))
+     (net DO_0_ 
+      (joined 
+       (portRef (member DO 7))
+       (portRef OUT (instanceRef med0_DO_triBus1_0_ ))))
+     (net cpt_3_ 
+      (joined 
+       (portRef regout (instanceRef modgen_counter_cpt_reg_q_3_ ))
+       (portRef dataa (instanceRef ix52720z52924 ))
+       (portRef dataa (instanceRef ix52720z52923 ))
+       (portRef dataa (instanceRef ix51723z52923 ))
+       (portRef dataa (instanceRef ix50726z52923 ))
+       (portRef dataa (instanceRef ix49729z52923 ))
+       (portRef dataa (instanceRef ix29521z52923 ))
+       (portRef datab (instanceRef ix33079z52923 ))
+       (portRef dataa (instanceRef ix22430z52924 ))
+       (portRef dataa (instanceRef ix49729z52924 ))
+       (portRef dataa (instanceRef ix22430z52925 ))))
+     (net cpt_2_ 
+      (joined 
+       (portRef regout (instanceRef modgen_counter_cpt_reg_q_2_ ))
+       (portRef datab (instanceRef ix52720z52924 ))
+       (portRef dataa (instanceRef ix51723z52924 ))
+       (portRef datab (instanceRef ix22430z52925 ))))
+     (net cpt_1_ 
+      (joined 
+       (portRef regout (instanceRef modgen_counter_cpt_reg_q_1_ ))
+       (portRef datac (instanceRef ix52720z52924 ))
+       (portRef datab (instanceRef ix51723z52924 ))
+       (portRef dataa (instanceRef ix50726z52924 ))
+       (portRef datac (instanceRef ix22430z52925 ))))
+     (net cpt_0_ 
+      (joined 
+       (portRef regout (instanceRef modgen_counter_cpt_reg_q_0_ ))
+       (portRef datad (instanceRef ix52720z52924 ))
+       (portRef datac (instanceRef ix51723z52924 ))
+       (portRef datab (instanceRef ix50726z52924 ))
+       (portRef datab (instanceRef ix49729z52923 ))
+       (portRef datad (instanceRef ix22430z52925 ))))
+     (net state_4_ 
+      (joined 
+       (portRef regout (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_4_ ))
+       (portRef datab (instanceRef ix29521z52923 ))
+       (portRef datac (instanceRef ix33079z52923 ))
+       (portRef datab (instanceRef ix22430z52924 ))))
+     (net state_0_ 
+      (joined 
+       (portRef Y (instanceRef ix22430z1315 ))
+       (portRef datain (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_1_ ))))
+     (net nx23427z1 
+      (joined 
+       (portRef regout (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_1_ ))
+       (portRef datain (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_2_ ))))
+     (net nx24424z1 
+      (joined 
+       (portRef regout (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_2_ ))
+       (portRef datain (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_3_ ))))
+     (net nx25421z1 
+      (joined 
+       (portRef regout (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_3_ ))
+       (portRef datain (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_4_ ))))
+     (net not_nRST 
+      (joined 
+       (portRef Y (instanceRef ix49729z1317 ))
+       (portRef aclr (instanceRef reg_state_0_ ))
+       (portRef aclr (instanceRef reg_DSO ))
+       (portRef aclr (instanceRef modgen_counter_cpt_reg_q_3_ ))
+       (portRef aclr (instanceRef modgen_counter_cpt_reg_q_2_ ))
+       (portRef aclr (instanceRef modgen_counter_cpt_reg_q_1_ ))
+       (portRef aclr (instanceRef modgen_counter_cpt_reg_q_0_ ))
+       (portRef aclr (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_4_ ))
+       (portRef aclr (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_3_ ))
+       (portRef aclr (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_2_ ))
+       (portRef aclr (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_1_ ))))
+     (net GND 
+      (joined 
+       (portRef Y (instanceRef GND ))
+       (portRef IN (instanceRef med0_DO_triBus1_0_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_0_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_1_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_1_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_2_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_2_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_3_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_3_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_4_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_4_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_5_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_5_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_6_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_6_ ))
+       (portRef IN (instanceRef med0_DO_triBus1_7_ ))
+       (portRef OE (instanceRef med0_DO_triBus1_7_ ))))
+     (net nx22430z2 
+      (joined 
+       (portRef combout (instanceRef ix22430z52925 ))
+       (portRef datac (instanceRef ix52720z52923 ))
+       (portRef datac (instanceRef ix51723z52923 ))
+       (portRef datac (instanceRef ix50726z52923 ))
+       (portRef datad (instanceRef ix49729z52923 ))
+       (portRef datad (instanceRef ix29521z52923 ))
+       (portRef datad (instanceRef ix22430z52924 ))
+       (portRef datac (instanceRef ix49729z52924 ))))
+     (net nx49729z2 
+      (joined 
+       (portRef combout (instanceRef ix49729z52924 ))
+       (portRef ena (instanceRef modgen_counter_cpt_reg_q_3_ ))
+       (portRef ena (instanceRef modgen_counter_cpt_reg_q_2_ ))
+       (portRef ena (instanceRef modgen_counter_cpt_reg_q_1_ ))
+       (portRef ena (instanceRef modgen_counter_cpt_reg_q_0_ ))))
+     (net nx22430z1 
+      (joined 
+       (portRef combout (instanceRef ix22430z52924 ))
+       (portRef ena (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_4_ ))
+       (portRef ena (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_3_ ))
+       (portRef ena (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_2_ ))
+       (portRef ena (instanceRef MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state_1_ ))))
+     (net nx33079z1 
+      (joined 
+       (portRef combout (instanceRef ix33079z52923 ))
+       (portRef datain (instanceRef reg_DSO ))))
+     (net nx49729z1 
+      (joined 
+       (portRef combout (instanceRef ix49729z52923 ))
+       (portRef datain (instanceRef modgen_counter_cpt_reg_q_0_ ))))
+     (net nx50726z1 
+      (joined 
+       (portRef combout (instanceRef ix50726z52923 ))
+       (portRef datain (instanceRef modgen_counter_cpt_reg_q_1_ ))))
+     (net nx51723z1 
+      (joined 
+       (portRef combout (instanceRef ix51723z52923 ))
+       (portRef datain (instanceRef modgen_counter_cpt_reg_q_2_ ))))
+     (net nx52720z1 
+      (joined 
+       (portRef combout (instanceRef ix52720z52923 ))
+       (portRef datain (instanceRef modgen_counter_cpt_reg_q_3_ ))))
+     (net nx50726z2 
+      (joined 
+       (portRef combout (instanceRef ix50726z52924 ))
+       (portRef datad (instanceRef ix50726z52923 ))))
+     (net nx51723z2 
+      (joined 
+       (portRef combout (instanceRef ix51723z52924 ))
+       (portRef datad (instanceRef ix51723z52923 ))))
+     (net nx52720z3 
+      (joined 
+       (portRef combout (instanceRef ix52720z52924 ))
+       (portRef datad (instanceRef ix52720z52923 ))))
+     (net nx52720z2 
+      (joined 
+       (portRef regout (instanceRef reg_state_0_ ))
+       (portRef datab (instanceRef ix52720z52923 ))
+       (portRef datab (instanceRef ix51723z52923 ))
+       (portRef datab (instanceRef ix50726z52923 ))
+       (portRef datac (instanceRef ix49729z52923 ))
+       (portRef datac (instanceRef ix29521z52923 ))
+       (portRef datac (instanceRef ix22430z52924 ))
+       (portRef datab (instanceRef ix49729z52924 ))
+       (portRef IN1 (instanceRef ix22430z1315 ))))
+     (net nx29521z1 
+      (joined 
+       (portRef combout (instanceRef ix29521z52923 ))
+       (portRef datain (instanceRef reg_state_0_ ))))))))
+ (design MEDIAN (cellRef MEDIAN (libraryRef work ))))

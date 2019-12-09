@@ -1,0 +1,94 @@
+//  Precision RTL Synthesis 64-bit 2017.1.0.15 (Production Release) Fri Sep 15 05:07:37 PDT 2017
+//  
+//  Copyright (c) Mentor Graphics Corporation, 1996-2017, All Rights Reserved.
+//             Portions copyright 1991-2008 Compuware Corporation
+//                       UNPUBLISHED, LICENSED SOFTWARE.
+//            CONFIDENTIAL AND PROPRIETARY INFORMATION WHICH IS THE
+//          PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS
+//  
+//  Running on Linux gmateu@tp-3a101-02 #1 SMP Debian 4.19.67-2+deb10u2 (2019-11-11) 4.19.0-6-amd64 x86_64
+//  
+//  Start time Sun Dec  8 23:13:40 2019
+
+-- Device: Altera - Cyclone II : EP2C35F672C : 8
+-- CTE report summary..
+-- POST-SYNTHESIS TIMING REPORTS ARE ESTIMATES AND SHOULD NOT BE RELIED ON TO MAKE QoR DECISIONS. For accurate timing information, please run place-and-route (P&R) and review P&R generated timing reports.
+
+================================================================================================
+                   Clock Frequency Report
+
+	Domain                  Clock Name                            Min Period (Freq)             Required Period (Freq)
+	------                  ----------                            -----------------             ----------------------
+	ClockDomain0            CLK                                   3.046 (328.299 MHz)           20.000 (50.000 MHz)
+
+
+================================================================================================
+Setup Timing Analysis of CLK
+
+Setup Slack Path Summary
+
+               Data                                                                                                                                                                       Data
+       Setup   Path   Source  Dest.                                                                                                                                                       End 
+Index  Slack   Delay  Clock   Clock                              Data Start Pin                                                              Data End Pin                                 Edge
+-----  ------  -----  ------  -----  -----------------------------------------------------------------------  --------------------------------------------------------------------------  ----
+  1    16.954  2.191  CLK     CLK    modgen_counter_cpt_reg_q(3)/clk                                          modgen_counter_cpt_reg_q(3)/ena                                             Rise
+  2    17.121  2.024  CLK     CLK    modgen_counter_cpt_reg_q(2)/clk                                          modgen_counter_cpt_reg_q(3)/ena                                             Rise
+  3    17.355  1.790  CLK     CLK    modgen_counter_cpt_reg_q(1)/clk                                          modgen_counter_cpt_reg_q(3)/ena                                             Rise
+  4    17.499  1.646  CLK     CLK    modgen_counter_cpt_reg_q(0)/clk                                          modgen_counter_cpt_reg_q(3)/ena                                             Rise
+  5    17.781  1.364  CLK     CLK    reg_state(0)/clk                                                         modgen_counter_cpt_reg_q(3)/ena                                             Rise
+  6    17.881  1.264  CLK     CLK    MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(4)/clk  MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(4)/ena     Rise
+  7    18.701  1.191  CLK     CLK    reg_DSO/clk                                                              reg_DSO/datain                                                              Rise
+  8    19.622  0.270  CLK     CLK    MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(1)/clk  MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(2)/datain  Rise
+  9    19.622  0.270  CLK     CLK    MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(3)/clk  MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(4)/datain  Rise
+ 10    19.622  0.270  CLK     CLK    MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(2)/clk  MEDIAN_sr_tap_0_shiftregister_with_taps_1_4_1_sr_tap_0_reg_state(3)/datain  Rise
+
+                  CTE Path Report
+
+
+Critical path #1, (path slack = 16.954):
+
+SOURCE CLOCK: name: CLK period: 20.000000
+     Times are relative to the 1st rising edge
+  DEST CLOCK: name: CLK period: 20.000000
+     Times are relative to the 2nd rising edge
+
+NAME                                  GATE                     DELAY    ARRIVAL DIR  FANOUT
+modgen_counter_cpt_reg_q(3)/clk    cycloneii_lcell_ff                   0.000   up
+modgen_counter_cpt_reg_q(3)/regout cycloneii_lcell_ff         0.000     0.000   up
+cpt(3)                             (net)                      0.450                  10
+ix22430z52925/dataa                cycloneii_lcell_comb                 0.450   up
+ix22430z52925/combout              cycloneii_lcell_comb       0.651     1.101   up
+nx22430z2                          (net)                      0.390                   7
+ix49729z52924/datac                cycloneii_lcell_comb                 1.491   up
+ix49729z52924/combout              cycloneii_lcell_comb       0.370     1.861   up
+nx49729z2                          (net)                      0.330                   4
+modgen_counter_cpt_reg_q(3)/ena    cycloneii_lcell_ff                   2.191   up
+
+		Initial edge separation:     20.000
+		Source clock delay:      -    0.000
+		Dest clock delay:        +    0.000
+		                        -----------
+		Edge separation:             20.000
+		Setup constraint:        -    0.855
+		                        -----------
+		Data required time:          19.145
+		Data arrival time:       -    2.191   ( 46.60% cell delay, 53.40% net delay )
+		                        -----------
+		Slack:                       16.954
+
+
+
+================================================================================================
+                   Input Delay Report
+
+	Input                  Clock Name                            Slack (ns)
+	-----                  ----------                            ----------
+	No input delay constraints.
+
+
+================================================================================================
+                   Output Delay Report
+
+	Output                 Clock Name                            Slack (ns)
+	------                 ----------                            ----------
+	No output delay constraints.
