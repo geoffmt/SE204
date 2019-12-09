@@ -9,19 +9,19 @@ module MED #(parameter width = 8, parameter number = 9)
 
 
   logic [width-1:0] R [number-1:0];
-  logic MAX;
-  logic MIN;
-  MCE #(.width(width))mce0(.A(DO),.B(R[7]),.MAX(MAX),.MIN(MIN));
+  logic [width-1:0] MAX;
+  logic [width-1:0] MIN;
+  MCE #(.width(width))mce0(.A(R[number-2]),.B(R[number-1]),.MAX(MAX),.MIN(MIN));
 
 
   always @(posedge CLK)
     begin
       R[0] <= DSI? MIN:DI;
-      for(int i=6;i>=0;i--)
+      for(int i=number-3;i>=0;i--)
         begin
           R[i+1] <= R[i];
         end
-      R[8] <= BYP?MAX:R[7];
+      R[number-1] <= BYP?R[number-2]:MAX;
     end
 
 
