@@ -1,4 +1,3 @@
-`include "MED.sv"
 
 module MEDIAN #(parameter width = 8)
   (input logic [width-1:0] DI,
