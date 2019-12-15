@@ -30,12 +30,12 @@ always_ff@ (posedge wb_s.clk) begin
   if (wb_s.stb && !wb_s.we)begin
     ack_read<=1;
     // mode classique
-    if (!wb_s.cti[0] && !wb_s.cti[1] && !wb_s.cti[2])begin 
+    if (wb_s.cti[1] == wb_s.cti[2])begin 
       if(!ack_read) wb_s.dat_sm <= ram[memory_slave];
       else ack_read <= 0;
     end
     // mode constant address burst
-    else if (wb_s.cti[0] && !wb_s.cti[1] && !wb_s.cti[2])
+    else if (wb_s.cti[2])
       wb_s.dat_sm <= ram[memory_slave];
     // mode incremeting address burst
     else begin 
