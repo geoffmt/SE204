@@ -6,7 +6,7 @@ module Top (
 	input  wire  [1:0]	KEY,
 	output logic [7:0]	LED,
 	input  wire	 [3:0]	SW,
-    // Les signaux du support matériel son regroupés dans une interface
+    // Les signaux du support matériel sont regroupés dans une interface
     hws_if.master       hws_ifm
 );
 
@@ -73,6 +73,26 @@ assign wshb_if_sdram.bte = '0 ;
 //--------------------------
 //------- Code Eleves ------
 //--------------------------
+`ifdef SIMULATION
+  localparam hcmpt=50 ;
+`else
+  localparam hcmpt=50000000 ;
+`endif
+
+logic [hcmpt:0] compteur;
+always_ff@(posedge sys_clk or sys_rst)begin
+    LED[0]<=KEY[0];
+    if (!sys_rst)begin
+        compteur <= (compteur + 1)%hcmpt;
+        if (compteur == 0)
+            LED[1] <= ~LED[1];
+        
+    end
+    else begin
+        LED[1] <= 0;
+        compteur <= 0;
+    end
+end
 
 
 

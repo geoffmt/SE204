@@ -19,6 +19,17 @@ Top Top0(.*) ;
 ///////////////////////////////
 //  Code élèves
 //////////////////////////////
+always #10ns FPGA_CLK1_50 = ~FPGA_CLK1_50;
+
+initial begin
+    KEY[0] = 1;
+    #128ns;
+    KEY[0] = 0;
+    #128ns;
+    KEY[0] = 1;
+    #4000000ns
+    $stop();
+end
 
 
 
