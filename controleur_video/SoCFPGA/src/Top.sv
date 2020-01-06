@@ -60,23 +60,26 @@ assign wshb_if_stream.rty =  1'b0 ;
 // On neutralise l'interface SDRAM
 // pour l'instant
 // A SUPPRIMER PLUS TARD
-//=============================
-assign wshb_if_sdram.stb  = 1'b0;
-assign wshb_if_sdram.cyc  = 1'b0;
-assign wshb_if_sdram.we   = 1'b0;
-assign wshb_if_sdram.adr  = '0  ;
-assign wshb_if_sdram.dat_ms = '0 ;
-assign wshb_if_sdram.sel = '0 ;
-assign wshb_if_sdram.cti = '0 ;
+//=============================-
+assign wshb_if_sdram.stb  = 1'b0;-
+assign wshb_if_sdram.cyc  = 1'b0;-
+assign wshb_if_sdram.we   = 1'b0;-
+assign wshb_if_sdram.adr  = '0  ;-
+assign wshb-_if_sdram.dat_ms = '0 ;-
+assign wshb_if_sdram.sel = '0 ;-
+assign wshb_if_sdram.cti = '0 ;-
 assign wshb_if_sdram.bte = '0 ;
 
 //--------------------------
 //------- Code Eleves ------
 //--------------------------
+
 `ifdef SIMULATION
   localparam hcmpt=50 ;
+  localparam hcmpt2=16;
 `else
-  localparam hcmpt=50000000 ;
+  localparam hcmpt=50000000;
+  localparam hcmpt2=16000000;
 `endif
 
 logic [hcmpt:0] compteur;
@@ -95,5 +98,32 @@ always_ff@(posedge sys_clk or sys_rst)begin
 end
 
 
+logic pixel_rst;
+logic bascule;
+
+always_ff@(posedge sys_rst)begin
+    if (sys_rst)begin
+        bascule <= 1;
+        pixel_rst <= 1;
+    end
+    else begin
+        bascule <= 0;
+        pixel_rst <= bascule;
+    end
+end
+
+always_ff@(posedge pixel_clk or pixel_rst)begin
+
+    if (!pixel_rst)begin
+        compteur <= compteur + 1;
+        if (compteur == hcmpt2)
+            LED[2] <= ~LED[2];
+        
+    end
+    else begin
+        LED[1] <= 0;
+        compteur <= 0;
+    end // A FINNIR
+end
 
 endmodule
