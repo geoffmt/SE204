@@ -27,7 +27,7 @@ initial begin
     KEY[0] = 0;
     #128ns;
     KEY[0] = 1;
-    #4000000ns
+    #4ms
     $stop();
 end
 
