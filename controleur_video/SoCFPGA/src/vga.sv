@@ -19,7 +19,7 @@ logic [$clog2(HFP+HPULSE+HBP+HDISP)-1:0] pixel_cpt;
 logic [$clog2(VFP+VPULSE+VBP+VDISP)-1:0] line_cpt;
 
 //Calcul des valeurs des compteurs
-always_ff @(posedge pixel_clk or negedge pixel_rst) begin : 
+always_ff @(posedge pixel_clk or negedge pixel_rst) begin
 	if(pixel_rst) begin
 		pixel_cpt <= 0;
 		line_cpt <=0;
@@ -38,7 +38,7 @@ always_ff @(posedge pixel_clk or negedge pixel_rst) begin :
 end
 
 //Utilisation des compteurs pour la synchronisation
-always_ff @(posedge pixel_clk or negedge pixel_rst) begin :
+always_ff @(posedge pixel_clk or negedge pixel_rst) begin
 	if(pixel_rst) begin
 		video_ifm.BLANK <= 0;
   		video_ifm.VS <= 1;
