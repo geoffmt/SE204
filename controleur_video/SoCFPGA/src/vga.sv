@@ -5,7 +5,7 @@ module vga (
 );
 
 parameter HDISP = 800;
-parameter VIDSP = 480;
+parameter VDISP = 480;
 localparam HFP = 40;
 localparam HPULSE = 48;
 localparam HBP = 40;
