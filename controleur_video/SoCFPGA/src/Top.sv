@@ -130,9 +130,9 @@ always_ff@(posedge pixel_clk)
             LED[2] <= ~LED[2];
     end
 
-
 // Création de l'instance de vga
 video_if video_if_inst();
 
 vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm));
 endmodule
+
