@@ -91,7 +91,7 @@ always_ff@(posedge sys_clk)begin
     end
     else begin
         compteur <= compteur + 1;
-        if (compteur == HCMPT)
+        if (compteur == 0)
             LED[1] <= ~LED[1];
     end
 end
@@ -118,7 +118,7 @@ always_ff@(posedge pixel_clk)
     end
     else begin
         compteur2 <= compteur2 + 1;
-        if (compteur2==HCMPT2)
+        if (compteur2==0)
             LED[2] <= ~LED[2];
     end
 endmodule
