@@ -14,8 +14,9 @@ logic [3:0]	SW;
 hws_if      hws_ifm();
 
 // Instance du module Top
-Top Top0(.*) ;
-
+video_if video_if0() ;
+Top #(.HDISP(160), .VDISP(90)) Top0(.*, .video_ifm(video_if0.master));
+screen #(.mode(13),.X(160),.Y(90)) screen0(.video_ifs(video_if0))  ;
 ///////////////////////////////
 //  Code élèves
 //////////////////////////////
