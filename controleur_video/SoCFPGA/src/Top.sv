@@ -86,7 +86,7 @@ assign wshb_if_sdram.bte = '0 ;
   localparam HCMPT2=16000000;
 `endif
 
-logic [$clog2(HCMPT):0] compteur;
+logic [$clog2(HCMPT)-1:0] compteur;
 always_ff@(posedge sys_clk)begin
     LED[0]<=KEY[0];
     if (sys_rst)begin
@@ -95,6 +95,8 @@ always_ff@(posedge sys_clk)begin
     end
     else begin
         compteur <= compteur + 1;
+        if (compteur >= HCMPT)
+            compteur <= 0;
         if (compteur == 0)
             LED[1] <= ~LED[1];
     end
@@ -122,6 +124,8 @@ always_ff@(posedge pixel_clk)
     end
     else begin
         compteur2 <= compteur2 + 1;
+        if (compteur2 >= HCMPT2)
+            compteur2 <= 0;
         if (compteur2==0)
             LED[2] <= ~LED[2];
     end
