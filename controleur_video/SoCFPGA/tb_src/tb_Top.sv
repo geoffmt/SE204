@@ -28,11 +28,8 @@ initial begin
     KEY[0] = 0;
     #128ns;
     KEY[0] = 1;
-end
-
-initial begin
-  #5000000ns;
-  $stop();
+    #5000000ns;
+    $stop();
 end
 
 

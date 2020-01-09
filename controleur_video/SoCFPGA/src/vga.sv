@@ -53,9 +53,10 @@ always_ff @(posedge pixel_clk or posedge pixel_rst) begin
 	else begin 
 		
 		//Mise à jour de RGB
-		if (pixel_cpt%16 == 0 || line_cpt%16 == 0) begin
+		if (pixel_cpt%16 == 0 || line_cpt%16 == 0) 
 			video_ifm.RGB <= {24{1'b1}};
-		end
+		if (pixel_cpt%16 != 0 && line_cpt%16 != 0)
+			video_ifm.RGB <= {24{1'b0}};
 
 		//Mise à jour de HS et VS
 		if (pixel_cpt<HFP || pixel_cpt >= HFP+HPULSE)
