@@ -1,7 +1,6 @@
 `default_nettype none
 
-module Top #(parameter HDISP = 800,
-            parameter VDISP = 480)
+module Top 
             (
             // Les signaux externes de la partie FPGA
             input  wire         FPGA_CLK1_50,
@@ -14,7 +13,8 @@ module Top #(parameter HDISP = 800,
             );
 
 
-
+parameter HDISP = 800;
+parameter VDISP = 480;
 
 //====================================
 //  Déclarations des signaux internes
@@ -133,7 +133,7 @@ always_ff@(posedge pixel_clk)
     end
 
 // Création de l'instance de vga
-
+video_if video_if_inst();
 vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm));
 endmodule
 
