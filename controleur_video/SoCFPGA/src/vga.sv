@@ -21,7 +21,8 @@ assign video_ifm.CLK = pixel_clk;
 logic [$clog2(HFP+HPULSE+HBP+HDISP)-1:0] pixel_cpt;
 logic [$clog2(VFP+VPULSE+VBP+VDISP)-1:0] line_cpt;
 logic read, write, wfull;
-logic [31:0] wdata;
+logic [31:0] rdata;
+logic wfull_first_time;
 
 async_fifo #(.DATA_WIDTH(32)) async_fifo_inst( .rst(wshb_ifm.rst), .rclk(pixel_clk),
                                                   .read(read), .wclk(wshb_ifm.clk),
@@ -37,6 +38,7 @@ assign wshb_ifm.bte = 2'b0;
 
 assign write = wshb_ifm.ack && ~wfull;
 
+
 always_ff@(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
 	if (wshb_ifm.rst)
 		wshb_ifm.adr = 32'b0;
@@ -48,12 +50,29 @@ always_ff@(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
 	end
 end
 
+logic bascule2;
+logic wfull_sync;
 
+always_ff@(posedge pixel_clk or posedge pixel_rst)
+    if (pixel_rst)begin
+        bascule2 <= 0;
+        wfull_sync <= 0;
+    end
+    else begin
+        bascule2 <= wfull;
+        wfull_sync <= bascule2;
+    end
 
-
-
-
-
+always_ff@(posedge pixel_clk or posedge pixel_rst)begin
+	if (pixel_rst)
+		wfull_first_time <= 0;
+	else begin
+		if (wfull_sync)
+			wfull_first_time <= 1;
+		else
+			wfull_first_time <= wfull_first_time;
+	end
+end
 
 
 
@@ -82,21 +101,19 @@ begin
 
 end
 
+
+assign video_ifm.RGB = rdata[23:0];
+assign read = video_ifm.BLANK;
+
 //Utilisation des compteurs pour la synchronisation
 always_ff @(posedge pixel_clk or posedge pixel_rst) begin
 	if(pixel_rst) begin
 		video_ifm.BLANK <= 0;
   		video_ifm.VS <= 1;
   		video_ifm.HS <= 1;
-  		video_ifm.RGB <= {24{1'b0}};
 	end
 	else begin 
 		
-		//Mise à jour de RGB
-		if (pixel_cpt%16 == 0 || line_cpt%16 == 0) 
-			video_ifm.RGB <= {24{1'b1}};
-		if (pixel_cpt%16 != 0 && line_cpt%16 != 0)
-			video_ifm.RGB <= {24{1'b0}};
 
 		//Mise à jour de HS et VS
 		if (pixel_cpt<HFP || pixel_cpt >= HFP+HPULSE)
