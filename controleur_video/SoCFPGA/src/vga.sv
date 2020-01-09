@@ -16,27 +16,38 @@ localparam VBP = 29;
 
 assign video_ifm.CLK = pixel_clk;
 
+
+
 logic [$clog2(HFP+HPULSE+HBP+HDISP)-1:0] pixel_cpt;
 logic [$clog2(VFP+VPULSE+VBP+VDISP)-1:0] line_cpt;
+logic read, write, wfull;
+logic [31:0] wdata;
 
+async_fifo #(.DATA_WIDTH(32)) async_fifo_inst( .rst(wshb_ifm.rst), .rclk(pixel_clk),
+                                                  .read(read), .wclk(wshb_ifm.clk),
+                                                  .wdata(wshb_ifm.dat_sm), .write(write),
+                                                  .wfull(wfull), .rdata(rdata));
 
 assign wshb_ifm.cyc = 1'b1;
 assign wshb_ifm.sel = 4'b1111; //DATA_BYTES = 4
-assign wshb_ifm.stb = 1'b1;
+assign wshb_ifm.stb = ~wfull;
 assign wshb_ifm.we = 1'b0;
 assign wshb_ifm.cti = 3'b0;
 assign wshb_ifm.bte = 2'b0;
+
+assign write = wshb_ifm.ack && ~wfull;
 
 always_ff@(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
 	if (wshb_ifm.rst)
 		wshb_ifm.adr = 32'b0;
 	else begin 
-		if (wshb_ifm.ack)
+		if (wshb_ifm.ack && ~wfull)
 			if (wshb_ifm.adr == 4*HDISP*VDISP-4)
 				wshb_ifm.adr <= 32'b0;
 			else wshb_ifm.adr <= wshb_ifm.adr + 4;
 	end
 end
+
 
 
 
