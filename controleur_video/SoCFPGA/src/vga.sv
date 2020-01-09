@@ -1,7 +1,8 @@
 module vga (
     input wire pixel_clk,
     input wire pixel_rst,
-    video_if.master video_ifm
+    video_if.master video_ifm,
+	wshb_if.master wshb_ifm
 );
 
 parameter HDISP = 800;
@@ -17,6 +18,34 @@ assign video_ifm.CLK = pixel_clk;
 
 logic [$clog2(HFP+HPULSE+HBP+HDISP)-1:0] pixel_cpt;
 logic [$clog2(VFP+VPULSE+VBP+VDISP)-1:0] line_cpt;
+
+
+assign wshb_ifm.cyc = 1'b1;
+assign wshb_ifm.sel = 4'b1111; //DATA_BYTES = 4
+assign wshb_ifm.stb = 1'b1;
+assign wshb_ifm.we = 1'b0;
+assign wshb_ifm.cti = 3'b0;
+assign wshb_ifm.bte = 2'b0;
+
+always_ff@(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
+	if (wshb_ifm.rst)
+		wshb_ifm.adr = 32'b0;
+	else begin 
+		if (wshb_ifm.ack)
+			if (wshb_ifm.adr == 4*HDISP*VDISP-4)
+				wshb_ifm.adr <= 32'b0;
+			else wshb_ifm.adr <= wshb_ifm.adr + 4;
+	end
+end
+
+
+
+
+
+
+
+
+
 
 //Calcul des valeurs des compteurs
 always_ff @(posedge pixel_clk or posedge pixel_rst)
