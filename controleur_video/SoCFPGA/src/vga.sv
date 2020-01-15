@@ -29,7 +29,7 @@ async_fifo #(.DATA_WIDTH(32)) async_fifo_inst( .rst(wshb_ifm.rst), .rclk(pixel_c
                                                   .wdata(wshb_ifm.dat_sm), .write(write),
                                                   .wfull(wfull), .rdata(rdata));
 
-assign wshb_ifm.cyc = 1'b1;
+assign wshb_ifm.cyc = ~wfull;
 assign wshb_ifm.sel = 4'b1111; //DATA_BYTES = 4
 assign wshb_ifm.stb = ~wfull;
 assign wshb_ifm.we = 1'b0;
@@ -113,8 +113,6 @@ always_ff @(posedge pixel_clk or posedge pixel_rst) begin
   		video_ifm.HS <= 1;
 	end
 	else begin 
-		
-
 		//Mise à jour de HS et VS
 		if (pixel_cpt<HFP || pixel_cpt >= HFP+HPULSE)
 			video_ifm.HS <= 1;

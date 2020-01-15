@@ -38,6 +38,8 @@ sys_pll  sys_pll_inst(
 //  Les bus Wishbone internes
 //=============================
 wshb_if #( .DATA_BYTES(4)) wshb_if_sdram  (sys_clk, sys_rst);
+wshb_if #( .DATA_BYTES(4)) wshb_if_mire  (sys_clk, sys_rst);
+wshb_if #( .DATA_BYTES(4)) wshb_if_vga  (sys_clk, sys_rst);
 wshb_if #( .DATA_BYTES(4)) wshb_if_stream (sys_clk, sys_rst);
 
 //=============================
@@ -134,6 +136,10 @@ always_ff@(posedge pixel_clk)
     end
 
 // Création de l'instance de vga
-vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm), .wshb_ifm(wshb_if_sdram));
+vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm), .wshb_ifm(wshb_if_vga.master));
+
+mire #(.HDISP(HDISP), .VDISP(VDISP)) mire_inst(.wshb_ifm(wshb_if_mire.master));
+
+wshb_intercon wshb_intercon_inst(.wshb_ifm(wshb_ifm_sdram.master));//ptet une erreur ici
 endmodule
 
