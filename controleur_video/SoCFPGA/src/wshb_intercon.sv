@@ -37,18 +37,13 @@ always @(posedge wshb_ifm_sdram.clk or posedge wshb_ifm_sdram.rst)begin
 	end
 	else begin
 		if (jeton) begin
-	  		if (~wshb_ifs_vga.cyc || wshb_ifs_mire.cyc)
+	  		if (~wshb_ifs_vga.cyc)
 	  			jeton <= 0;
-			if (wshb_ifs_vga.cyc && ~wshb_ifs_mire.cyc)
-				jeton <= 1;
 		end
 		else begin
-	  		if (~wshb_ifs_mire.cyc && wshb_ifs_vga.cyc)
+	  		if (~wshb_ifs_mire.cyc)
 	  			jeton <= 1;
-			if (wshb_ifs_mire.cyc || ~wshb_ifs_vga.cyc)
-				jeton <= 0;
 		end
 	end
 end
-
 endmodule
