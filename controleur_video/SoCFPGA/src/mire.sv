@@ -32,24 +32,45 @@ always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
    end         
 end
 
-always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)
-   if (wshb_ifm.rst)
+always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
+   if (wshb_ifm.rst)begin
       wshb_ifm.cyc <= 1;
-   else
-      if (pixel_cpt%64 == 0)
+      wshb_ifm.stb <= 0;
+      wshb_ifm.adr <= 0;
+      wshb_ifm.dat_ms <= 0;
+   end
+   else begin 
+      if (pixel_cpt%64 == 0) begin
          wshb_ifm.cyc <= 0;
          wshb_ifm.stb <= 0;
+      end
+      else begin
+         wshb_ifm.cyc <= 1;
+         wshb_ifm.stb <= 1;         
+      end
 
+      wshb_ifm.adr <= (HDISP * line_cpt + pixel_cpt) * 4;
+
+      if (pixel_cpt%16 == 0 || line_cpt%16 == 0)
+         wshb_ifm.dat_ms <= 32'hffffff;
+      else
+         wshb_ifm.dat_ms <= 32'h0;
+
+
+
+   end
+end
+
+/*
 assign wshb_ifm.adr = (HDISP * line_cpt + pixel_cpt) * 4;
 
 always_comb begin 
    if (pixel_cpt%16 == 0 || line_cpt%16 == 0)
       wshb_ifm.dat_ms = 32'hffffff;
    else
-      wshb_ifm.dat_ms = 32'h000000;
-   
+      wshb_ifm.dat_ms = 32'h0;
 end
- 
+ */
 
 assign wshb_ifm.sel = 4'b1111; //DATA_BYTES = 4
 assign wshb_ifm.we = 1'b1;

@@ -31,18 +31,24 @@ assign wshb_ifs_mire.err = ~jeton ? wshb_ifm_sdram.err : 0;
 
 
 //mise à jour du jeton de façon synchrone
-always @(posedge wshb_ifm_sdram.clk or posedge wshb_ifm_sdram.rst)
+always @(posedge wshb_ifm_sdram.clk or posedge wshb_ifm_sdram.rst)begin
 	if (wshb_ifm_sdram.rst) begin
 		jeton = 0;
 	end
 	else begin
-	  if (jeton)
-	  	if (~wshb_ifs_vga.cyc)
-	  		jeton <= 0;
-	  else 
-	  	if (~wshb_ifs_mire.cyc)
-	  		jeton <= 1;
+		if (jeton) begin
+	  		if (~wshb_ifs_vga.cyc || wshb_ifs_mire.cyc)
+	  			jeton <= 0;
+			if (wshb_ifs_vga.cyc && ~wshb_ifs_mire.cyc)
+				jeton <= 1;
+		end
+		else begin
+	  		if (~wshb_ifs_mire.cyc && wshb_ifs_vga.cyc)
+	  			jeton <= 1;
+			if (wshb_ifs_mire.cyc || ~wshb_ifs_vga.cyc)
+				jeton <= 0;
+		end
 	end
-
+end
 
 endmodule

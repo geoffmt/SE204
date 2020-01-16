@@ -9,7 +9,7 @@ module Top
             input  wire	 [3:0]	SW,
             // Les signaux du support matériel sont regroupés dans une interface
             hws_if.master       hws_ifm,
-            video_if.master video_ifm
+            video_if.master     video_ifm
             );
 
 
@@ -135,11 +135,12 @@ always_ff@(posedge pixel_clk)
             LED[2] <= ~LED[2];
     end
 
-// Création de l'instance de vga
-vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm), .wshb_ifm(wshb_if_vga.master));
+// Création des instances
 
 mire #(.HDISP(HDISP), .VDISP(VDISP)) mire_inst(.wshb_ifm(wshb_if_mire.master));
 
-wshb_intercon wshb_intercon_inst(.wshb_ifm(wshb_ifm_sdram.master));//ptet une erreur ici
+vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm), .wshb_ifm(wshb_if_vga.master));
+
+wshb_intercon wshb_intercon_inst(.wshb_ifm_sdram(wshb_if_sdram.master));//ptet une erreur ici
 endmodule
 
