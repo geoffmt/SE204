@@ -135,12 +135,12 @@ always_ff@(posedge pixel_clk)
             LED[2] <= ~LED[2];
     end
 
-// Création des instances
+// Création des instances des modules
 
 mire #(.HDISP(HDISP), .VDISP(VDISP)) mire_inst(.wshb_ifm(wshb_if_mire.master));
 
 vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm), .wshb_ifm(wshb_if_vga.master));
 
-wshb_intercon wshb_intercon_inst(.wshb_ifm_sdram(wshb_if_sdram.master));//ptet une erreur ici
-endmodule
+wshb_intercon wshb_intercon_inst(.wshb_ifm_sdram(wshb_if_sdram.master),.wshb_ifs_mire(wshb_if_mire.slave), .wshb_ifs_vga(wshb_if_vga.slave));
 
+endmodule
