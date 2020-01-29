@@ -38,6 +38,11 @@ assign wshb_ifm.bte = 2'b0;
 
 assign write = wshb_ifm.ack && ~wfull;
 
+//=======================================================
+//  Lecture de la RAM  -  Envoi sur la FIFO
+//=======================================================
+
+//S'assure que la fifo n'est pas pleine
 always_ff@(posedge wshb_ifm.clk)begin
 	if (wfull)
 		wshb_ifm.cyc <= 0;
@@ -55,6 +60,10 @@ always_ff@(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
 			else wshb_ifm.adr <= wshb_ifm.adr + 4;
 	end
 end
+
+//==========================================================
+// Lecture de la FIFO  -  Envoi vers le module vidéo
+//==========================================================
 
 logic bascule2;
 logic wfull_sync;

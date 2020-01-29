@@ -10,7 +10,7 @@ logic [$clog2(HDISP)-1:0] pixel_cpt;
 logic [$clog2(VDISP)-1:0] line_cpt;
 
 
-//Calcul des valeurs des compteurs
+// Calcul des valeurs des compteurs
 always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
    if (wshb_ifm.rst) begin
       line_cpt <= 0;
@@ -32,6 +32,7 @@ always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
    end         
 end
 
+// Génération des signaux sur le wishbone
 always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
    if (wshb_ifm.rst)begin
       wshb_ifm.cyc <= 1;
@@ -61,16 +62,6 @@ always_ff @(posedge wshb_ifm.clk or posedge wshb_ifm.rst)begin
    end
 end
 
-/*
-assign wshb_ifm.adr = (HDISP * line_cpt + pixel_cpt) * 4;
-
-always_comb begin 
-   if (pixel_cpt%16 == 0 || line_cpt%16 == 0)
-      wshb_ifm.dat_ms = 32'hffffff;
-   else
-      wshb_ifm.dat_ms = 32'h0;
-end
- */
 
 assign wshb_ifm.sel = 4'b1111; //DATA_BYTES = 4
 assign wshb_ifm.we = 1'b1;

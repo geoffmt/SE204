@@ -93,6 +93,10 @@ assign wshb_if_sdram.bte = '0 ;
   localparam HCMPT2=16000000;
 `endif
 
+//=============
+// Led 1 à 1 Hz 
+//=============
+
 logic [$clog2(HCMPT)-1:0] compteur;
 always_ff@(posedge sys_clk)begin
     LED[0]<=KEY[0];
@@ -109,7 +113,9 @@ always_ff@(posedge sys_clk)begin
     end
 end
 
-
+//=========================
+// Génération du pixel_rst 
+//=========================
 logic pixel_rst;
 logic bascule;
 
@@ -123,6 +129,9 @@ always_ff@(posedge pixel_clk)
         pixel_rst <= bascule;
     end
 
+//=============
+// Led 2 à 1 Hz 
+//=============
 logic [$clog2(HCMPT2)-1:0] compteur2;
 always_ff@(posedge pixel_clk)
     if (pixel_rst) begin
@@ -137,9 +146,11 @@ always_ff@(posedge pixel_clk)
             LED[2] <= ~LED[2];
     end
 
-// Création des instances des modules
+//=====================================
+//L Création des instances des modules 
+//=====================================
 
-//mire #(.HDISP(HDISP), .VDISP(VDISP)) mire_inst(.wshb_ifm(wshb_if_mire.master));
+// mire #(.HDISP(HDISP), .VDISP(VDISP)) mire_inst(.wshb_ifm(wshb_if_mire.master));
 
 vga #(.HDISP(HDISP), .VDISP(VDISP)) vga_inst(.pixel_clk(pixel_clk), .pixel_rst(pixel_rst), .video_ifm(video_ifm), .wshb_ifm(wshb_if_vga.master));
 
